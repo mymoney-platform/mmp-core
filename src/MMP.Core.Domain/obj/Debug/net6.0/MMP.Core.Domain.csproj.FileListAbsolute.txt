@@ -1,0 +1,12 @@
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/bin/Debug/net6.0/MMP.Core.Domain.deps.json
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/bin/Debug/net6.0/MMP.Core.Domain.dll
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/bin/Debug/net6.0/ref/MMP.Core.Domain.dll
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/bin/Debug/net6.0/MMP.Core.Domain.pdb
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.csproj.AssemblyReference.cache
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.AssemblyInfoInputs.cache
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.AssemblyInfo.cs
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.csproj.CoreCompileInputs.cache
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.dll
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/ref/MMP.Core.Domain.dll
+/home/bruno/RiderProjects/mmp-core/src/MMP.Core.Domain/obj/Debug/net6.0/MMP.Core.Domain.pdb
