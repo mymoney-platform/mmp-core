@@ -19,6 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.Core.Shared", "src\MMP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.Core.Application.Command.Tests", "test\MMP.Core.Application.Command.Tests\MMP.Core.Application.Command.Tests.csproj", "{7C56A7B0-8D27-4D96-9DF6-E3E5B2C740B7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{E09269F8-E063-4BC4-94F0-FB7EEC92465A}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

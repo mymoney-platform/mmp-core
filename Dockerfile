@@ -5,10 +5,15 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["mmp-core/src/MMP.Core.Api/MMP.Core.Api.csproj", "MMP.Core.Api/"]
+COPY ["/src/MMP.Core.Api/MMP.Core.Api.csproj", "src/MMP.Core.Api/"]
+COPY ["/src/MMP.Core.Application/MMP.Core.Application.csproj", "src/MMP.Core.Application/"]
+COPY ["/src/MMP.Core.Domain/MMP.Core.Domain.csproj", "src/MMP.Core.Domain/"]
+COPY ["/src/MMP.Core.Shared/MMP.Core.Shared.csproj", "src/MMP.Core.Shared/"]
+
 RUN dotnet restore "src/MMP.Core.Api/MMP.Core.Api.csproj"
 COPY . .
-WORKDIR "/src/MMP.Core.Api"
+WORKDIR "src/MMP.Core.Api"
+RUN ls
 RUN dotnet build "MMP.Core.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
