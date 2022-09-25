@@ -1,7 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/home/bruno/.cache/JetBrains/Rider2022.2/resharper-host/temp/Rider/vAny/CoverageData/_mmp-core.591182334/Snapshot/snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=93ab6ad3_002Daa78_002D4bdb_002D9fda_002D0ebc8a6c2ba5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="OperationShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::660D100C-C2F1-480C-9304-DF24B8871F3B::net6.0::MMP.Core.Domain.Tests.OperationShould&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

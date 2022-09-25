@@ -18,6 +18,18 @@ public class Operation
             : description;
     }
 
+    public Operation(Guid accountId, Guid? externalId, decimal value, OperationType operationType,
+        OperationCategory operationCategory, string description)
+    {
+        OperationId = Guid.NewGuid();
+        AccountId = accountId;
+        ExternalId = externalId;
+        Value = value;
+        OperationType = operationType;
+        OperationCategory = operationCategory;
+        Description = description;
+    }
+
     public Guid OperationId { get; }
     public Guid AccountId { get; }
     public Guid? ExternalId { get; }
@@ -50,7 +62,7 @@ public class Operation
     {
         if (string.IsNullOrWhiteSpace(Description) && operationCategory == OperationCategory.None)
             throw new Exception("Operation category can not be none when description is empty");
-            
+
 
         OperationCategory = operationCategory;
     }
