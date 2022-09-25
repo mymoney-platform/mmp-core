@@ -5,7 +5,6 @@ using Xunit;
 
 namespace MMP.Core.Domain.Tests;
 
-[Trait("Domain.Models.Operation", "Unit")]
 public class OperationShould
 {
     [Fact]
