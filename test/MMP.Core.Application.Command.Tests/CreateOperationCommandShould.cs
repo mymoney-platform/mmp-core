@@ -25,5 +25,6 @@ public class CreateOperationCommandShould
         //Assert
         operationId.Should().NotBeEmpty();
         operationRepositoryMock.Verify(o => o.Save(It.IsAny<Operation>()), Times.Once);
+        operationRepositoryMock.Verify(o => o.Commit(), Times.Once);
     }
 }

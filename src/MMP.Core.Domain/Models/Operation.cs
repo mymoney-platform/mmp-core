@@ -77,4 +77,14 @@ public class Operation
 
         OperationType = operationType;
     }
+
+    public Operation ReverseOperation()
+    {
+        Operation op = new(this.AccountId, (Guid?)this.OperationId, this.Value, this.OperationType,
+            this.OperationCategory, this.Description);
+
+        op.ChangeOperationType(OperationType.Reverse);
+
+        return op;
+    }
 }

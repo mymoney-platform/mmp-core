@@ -14,8 +14,14 @@ public class DeleteOperationCommandHandler : IRequestHandler<DeleteOperationComm
 
     public async Task<Unit> Handle(DeleteOperationCommand request, CancellationToken cancellationToken)
     {
-        await _operationRepository.Delete(request.OperationId);
-        
+        var op = await _operationRepository.Get(request.OperationId);
+
+        if (op != null)
+        {
+            var copy = op.ReverseOperation();
+            await _operationRepository.Save(copy);
+            await _operationRepository.Commit();
+        }
         return Unit.Value;
     }
 }
