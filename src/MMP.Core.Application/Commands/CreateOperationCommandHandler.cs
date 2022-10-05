@@ -20,6 +20,7 @@ public class CreateOperationCommandHandler : IRequestHandler<CreateOperationComm
         var op = request.ToDomain();
 
         await _operationRepository.Save(op);
+        await _operationRepository.Commit();
         
         return op.OperationId;
     }

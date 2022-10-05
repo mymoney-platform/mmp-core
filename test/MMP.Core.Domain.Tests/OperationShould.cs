@@ -138,6 +138,25 @@ public class OperationShould
         op.Value.Should().Be(200);
     }
 
+    [Fact]
+    public async Task CopyOperationWhenReverseOperation()
+    {
+        //Arrange
+        var op = Setup();
+        
+        //Action
+        var copy = op.ReverseOperation();
+        
+        //Assert
+        copy.OperationId.Should().NotBe(op.OperationId);
+        copy.AccountId.Should().Be(op.AccountId);
+        copy.Value.Should().BeNegative().And.NotBe(op.Value);
+        copy.Description.Should().Be(op.Description);
+        copy.ExternalId.Should().Be(op.OperationId);
+        copy.OperationCategory.Should().Be(op.OperationCategory);
+        copy.OperationType.Should().Be(OperationType.Reverse);
+    }
+
     private Operation Setup()
     {
         var operationId = Guid.NewGuid();
