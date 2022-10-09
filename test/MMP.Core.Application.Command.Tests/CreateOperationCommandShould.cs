@@ -15,8 +15,8 @@ public class CreateOperationCommandShould
     public async Task CreateOperationWhenGivenValidRequest()
     {
         //Arrange
-        var request = TestHelper.SetupOperation();
-        var operationRepositoryMock = new Mock<IOperationRepository>();
+        var request = TestHelper.SetupCreateOperation();
+        var operationRepositoryMock = new Mock<IOperationCommandRepository>();
         var handler = new CreateOperationCommandHandler(operationRepositoryMock.Object);
 
         //Action

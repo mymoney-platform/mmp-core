@@ -8,9 +8,9 @@ namespace MMP.Core.Application.Commands;
 
 public class CreateOperationCommandHandler : IRequestHandler<CreateOperationCommand, Guid>
 {
-    private readonly IOperationRepository _operationRepository;
+    private readonly IOperationCommandRepository _operationRepository;
 
-    public CreateOperationCommandHandler(IOperationRepository operationRepository)
+    public CreateOperationCommandHandler(IOperationCommandRepository operationRepository)
     {
         _operationRepository = operationRepository;
     }
