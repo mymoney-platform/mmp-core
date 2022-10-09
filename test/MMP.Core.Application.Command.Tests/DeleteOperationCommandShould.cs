@@ -16,12 +16,12 @@ public class DeleteOperationCommandShould
     public async Task DeleteOperationWhenGivenValidRequest()
     {
         //Arrange
-        var request = new DeleteOperationCommand { OperationId = Guid.NewGuid() };
-        var operationRepositoryMock = new Mock<IOperationRepository>();
+        var request = new ReverseOperationCommand { OperationId = Guid.NewGuid() };
+        var operationRepositoryMock = new Mock<IOperationCommandRepository>();
         operationRepositoryMock.Setup(op => op.Get(It.IsAny<Guid>()))
             .ReturnsAsync(Setup());
 
-        var handler = new DeleteOperationCommandHandler(operationRepositoryMock.Object);
+        var handler = new ReverseOperationCommandHandler(operationRepositoryMock.Object);
 
         //Action
         await handler.Handle(request, CancellationToken.None);

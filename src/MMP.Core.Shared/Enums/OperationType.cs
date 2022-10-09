@@ -5,5 +5,6 @@ public enum OperationType
     Deposit,
     Withdraw,
     Expense,
-    Investment
+    Investment,
+    Reverse
 }

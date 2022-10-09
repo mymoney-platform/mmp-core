@@ -3,16 +3,16 @@ using MMP.Core.Application.Interfaces;
 
 namespace MMP.Core.Application.Commands;
 
-public class DeleteOperationCommandHandler : IRequestHandler<DeleteOperationCommand>
+public class ReverseOperationCommandHandler : IRequestHandler<ReverseOperationCommand>
 {
-    private readonly IOperationRepository _operationRepository;
+    private readonly IOperationCommandRepository _operationRepository;
 
-    public DeleteOperationCommandHandler(IOperationRepository operationRepository)
+    public ReverseOperationCommandHandler(IOperationCommandRepository operationRepository)
     {
         _operationRepository = operationRepository;
     }
 
-    public async Task<Unit> Handle(DeleteOperationCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(ReverseOperationCommand request, CancellationToken cancellationToken)
     {
         var op = await _operationRepository.Get(request.OperationId);
 
