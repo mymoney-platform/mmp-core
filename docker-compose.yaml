@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  postgres:
+    profiles: [ "required" ]
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      {
+        "POSTGRES_DB": "mm_db",
+        "POSTGRES_USER": "admin",
+        "POSTGRES_PASSWORD": "adminpass"
+      }
+    healthcheck:
+      test: [
+        "CMD","pg_isready", "--dbname=mmcore_db", "--username=admin:user"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - core
+
+networks:
+  core:
+    driver: bridge
+      

@@ -22,7 +22,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{E09269F8-E063-4BC4-94F0-FB7EEC92465A}"
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
+		docker-compose.yaml = docker-compose.yaml
+		run.sh = run.sh
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.Core.Bootstrap", "src\MMP.Core.Bootstrap\MMP.Core.Bootstrap.csproj", "{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,10 @@ Global
 		{7C56A7B0-8D27-4D96-9DF6-E3E5B2C740B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C56A7B0-8D27-4D96-9DF6-E3E5B2C740B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C56A7B0-8D27-4D96-9DF6-E3E5B2C740B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C0F863E1-959D-49E6-AE03-6F38AC420B01} = {88924FF2-E7DB-46A4-8E7C-67423AA2DB90}
@@ -65,5 +73,6 @@ Global
 		{660D100C-C2F1-480C-9304-DF24B8871F3B} = {DF8FA24E-E9AE-4D47-8E0F-02DD00823862}
 		{8DAB5CF8-C41D-4551-85FD-AA58C77E86AA} = {88924FF2-E7DB-46A4-8E7C-67423AA2DB90}
 		{7C56A7B0-8D27-4D96-9DF6-E3E5B2C740B7} = {DF8FA24E-E9AE-4D47-8E0F-02DD00823862}
+		{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8} = {88924FF2-E7DB-46A4-8E7C-67423AA2DB90}
 	EndGlobalSection
 EndGlobal
