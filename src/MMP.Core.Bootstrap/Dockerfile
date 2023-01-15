@@ -3,8 +3,10 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/MMP.Core.Bootstrap/MMP.Core.Bootstrap.csproj", "MMP.Core.Bootstrap/"]
-RUN dotnet restore "src/MMP.Core.Bootstrap/MMP.Core.Bootstrap.csproj"
+COPY ["./MMP.Core.Bootstrap/MMP.Core.Bootstrap.csproj", "MMP.Core.Bootstrap/"]
+COPY ["./MMP.Core.Data/MMP.Core.Data.csproj", "MMP.Core.Data/"]
+
+RUN dotnet restore "./MMP.Core.Bootstrap/MMP.Core.Bootstrap.csproj"
 COPY . .
 WORKDIR "/src/MMP.Core.Bootstrap"
 RUN dotnet build "MMP.Core.Bootstrap.csproj" -c Release -o /app/build
