@@ -8,13 +8,13 @@ services:
       - "5432:5432"
     environment:
       {
-        "POSTGRES_DB": "mm_db",
+        "POSTGRES_DB": "MMP_DB",
         "POSTGRES_USER": "admin",
         "POSTGRES_PASSWORD": "adminpass"
       }
     healthcheck:
       test: [
-        "CMD","pg_isready", "--dbname=mmcore_db", "--username=admin:user"
+        "CMD","pg_isready", "--dbname=MMP_DB", "--username=admin:user"
       ]
       interval: 5s
       timeout: 5s

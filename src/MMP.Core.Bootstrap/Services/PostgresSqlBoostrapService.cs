@@ -9,26 +9,24 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
     private readonly ILogger<PostgresSqlBoostrapService> _logger;
     private readonly PostgresSql _config;
     private readonly NpgsqlConnection _rootConnection;
-    private readonly NpgsqlConnection _dbConnection;
+    private NpgsqlConnection _dbConnection;
 
     public PostgresSqlBoostrapService(ILogger<PostgresSqlBoostrapService> logger, PostgresSql config)
     {
         _logger = logger;
         _config = config;
 
-        _rootConnection = new NpgsqlConnection(BuildConnectionString("mm_db", config.Root));
+        _rootConnection = new NpgsqlConnection(BuildConnectionString("MMP_DB", config.Root));
         _rootConnection.Open();
-
-        _dbConnection = new NpgsqlConnection(BuildConnectionString($"{config.Server.DatabaseName}_db", config.Root));
-        _dbConnection.Open();
     }
 
     public Task ExecuteAsync()
     {
         _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} Starting... ");
-
+        
         CreateAppUser();
         CreateDatabase();
+        CreateDbConnection(_config);
         CreateSchema();
         SetPermissions();
 
@@ -51,7 +49,7 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
         {
             _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} Creating user '{_config.App.User}'...");
 
-            //command.CommandText = $@"CREATE USER {_config.App.User} WITH PASSWORD '{_config.App.Password}'";
+            command.CommandText = $@"CREATE USER {_config.App.User} WITH PASSWORD '{_config.App.Password}'";
 
             command.CommandText = @$"
                     CREATE ROLE {_config.App.User} WITH
@@ -143,6 +141,12 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
         
         _logger.LogInformation(
             $"{nameof(PostgresSqlBoostrapService)} Created schema {_config.Server.DatabaseName}'");
+    }
+
+    private void CreateDbConnection(PostgresSql config)
+    {
+        _dbConnection = new NpgsqlConnection(BuildConnectionString($"{config.Server.DatabaseName}", config.Root));
+        _dbConnection.Open();
     }
 
     private string BuildConnectionString(string database, Credential credential)
