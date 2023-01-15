@@ -1,0 +1,36 @@
+version: '3.4'
+services:
+  postgres:
+    profiles: [ "required" ]
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      {
+        "POSTGRES_DB": "MMP_DB",
+        "POSTGRES_USER": "admin",
+        "POSTGRES_PASSWORD": "adminpass"
+      }
+    healthcheck:
+      test: [
+        "CMD","pg_isready", "--dbname=MMP_DB", "--username=admin:user"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - core
+  
+  bootstrap:
+    profiles: ["required"]
+    build:
+      context: ./src
+      dockerfile: MMP.Core.Bootstrap/Dockerfile
+    image: brunosalmeida89/mmp-core-bootstrap
+    container_name: mmp-core-bootstrap
+
+networks:
+  core:
+    driver: bridge
+      
