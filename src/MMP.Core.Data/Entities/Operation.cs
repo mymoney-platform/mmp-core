@@ -1,7 +1,7 @@
 ﻿namespace MMP.Core.Data.Entities;
 
 public class Operation : Entity
-{
+{ 
     public Guid OperationId { get; set; }
     public Guid AccountId { get; set; }
     public Guid? ExternalId { get; }

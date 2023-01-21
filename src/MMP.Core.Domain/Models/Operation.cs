@@ -1,8 +1,7 @@
 ﻿using MMP.Core.Domain.Enums;
 
 namespace MMP.Core.Domain.Models;
-
-public class Operation
+public sealed class Operation : Base
 {
     public Operation(Guid operationId, Guid accountId, decimal value, OperationType operationType,
         OperationCategory operationCategory, string description, Guid? externalId = null)
@@ -29,7 +28,6 @@ public class Operation
         OperationCategory = operationCategory;
         Description = description;
     }
-
     public Guid OperationId { get; }
     public Guid AccountId { get; }
     public Guid? ExternalId { get; }
@@ -62,7 +60,6 @@ public class Operation
     {
         if (string.IsNullOrWhiteSpace(Description) && operationCategory == OperationCategory.None)
             throw new Exception("Operation category can not be none when description is empty");
-
 
         OperationCategory = operationCategory;
     }
