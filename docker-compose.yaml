@@ -33,7 +33,6 @@ services:
       - DOTNET_ENVIRONMENT=Docker
     networks:
       - core
-
 networks:
   core:
     driver: bridge
