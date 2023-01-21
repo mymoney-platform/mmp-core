@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   postgres:
-    profiles: [ "required" ]
+    profiles: [ "infra" ]
     image: postgres:15
     container_name: postgres
     ports:
@@ -23,13 +23,16 @@ services:
       - core
   
   bootstrap:
-    profiles: ["required"]
+    profiles: ["seed"]
     build:
       context: ./src
       dockerfile: MMP.Core.Bootstrap/Dockerfile
     image: brunosalmeida89/mmp-core-bootstrap
     container_name: mmp-core-bootstrap
-
+    environment:
+      - DOTNET_ENVIRONMENT=Docker
+    networks:
+      - core
 networks:
   core:
     driver: bridge

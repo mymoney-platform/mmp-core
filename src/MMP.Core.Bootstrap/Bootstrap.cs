@@ -21,6 +21,8 @@ public class Bootstrap : IHostedService
         _logger.LogInformation("Starting boostrap");
         await _postgresSqlBoostrapService.ExecuteAsync();
         _fluentMigrationService.Run();
+        
+        await StartAsync(cancellationToken).ConfigureAwait(false);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)
