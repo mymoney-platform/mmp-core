@@ -6,5 +6,6 @@ namespace MMP.Core.Domain.Interfaces;
 public interface IOperationRepository
 {
     Task<Optional<Operation>> GetByAccountAndOperationId(Guid accountId, Guid operationId);
-    Task<Optional<Operation>> InsertOperation(Operation operation);
+    Task<Optional<Operation>> Save(Operation operation);
+    Task<Optional<Operation>> Update(Operation operation);
 }

@@ -15,8 +15,8 @@ public static class OperationExtension
             entity.OperationId, 
             entity.AccountId, 
             entity.Value, 
-            (OperationType)entity.OperationType, 
-            (OperationCategory)entity.OperationCategory, 
+            entity.OperationType, 
+            entity.OperationCategory, 
             entity.Description, 
             entity.ExternalId);
         
@@ -24,7 +24,7 @@ public static class OperationExtension
         return model;
     }
 
-    public static Operation ToEntity(this MMP.Core.Domain.Models.Operation model)
+    public static Operation ToEntity(this Domain.Models.Operation? model)
     {
         if (model is null)
             return default!;
@@ -34,8 +34,8 @@ public static class OperationExtension
             OperationId = model.OperationId,
             AccountId = model.AccountId,
             Value = model.Value,
-            OperationType = (OperationType)model.OperationType,
-            OperationCategory = (MMP.Core.Domain.Enums.OperationCategory)model.OperationCategory,
+            OperationType = model.OperationType,
+            OperationCategory = model.OperationCategory,
             Description = model.Description,
             ExternalId = model.ExternalId,
             Id = model.GetInternalId()
