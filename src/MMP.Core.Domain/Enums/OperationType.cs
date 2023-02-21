@@ -1,4 +1,4 @@
-namespace MMP.Core.Domain.Models;
+namespace MMP.Core.Domain.Enums;
 
 public enum OperationType
 {

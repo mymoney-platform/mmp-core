@@ -1,12 +1,14 @@
-﻿namespace MMP.Core.Data.Entities;
+﻿using MMP.Core.Domain.Enums;
+
+namespace MMP.Core.Data.Entities;
 
 public class Operation : Entity
 { 
     public Guid OperationId { get; set; }
     public Guid AccountId { get; set; }
-    public Guid? ExternalId { get; }
+    public Guid? ExternalId { get; set; }
     public decimal Value { get; set; }
-    public int OperationType { get; set; }
-    public int OperationCategory { get; set; }
+    public OperationType OperationType { get; set; }
+    public OperationCategory OperationCategory { get; set; }
     public string Description { get; set; }
 }

@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		Dockerfile = Dockerfile
 		docker-compose.yaml = docker-compose.yaml
 		run.sh = run.sh
+		.github\workflows\ci.yaml = .github\workflows\ci.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.Core.Bootstrap", "src\MMP.Core.Bootstrap\MMP.Core.Bootstrap.csproj", "{AE85CA25-9836-4A30-B0EF-FE28BA1C8EA8}"

@@ -2,5 +2,5 @@ namespace MMP.Core.Data.Entities;
 
 public class Entity
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 }

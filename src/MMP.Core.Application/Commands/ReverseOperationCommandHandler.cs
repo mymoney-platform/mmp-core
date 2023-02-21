@@ -16,7 +16,7 @@ public class ReverseOperationCommandHandler : IRequestHandler<ReverseOperationCo
     {
         var op = await _operationRepository.Get(request.OperationId);
 
-        if (op != null)
+        if (op is not null)
         {
             var copy = op.ReverseOperation();
             await _operationRepository.Save(copy);
