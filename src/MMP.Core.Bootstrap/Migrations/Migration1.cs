@@ -12,7 +12,7 @@ public class Migration1 : Migration
     public override void Up()
     {
         Create
-            .Table(nameof(Operation))
+            .Table(Operation.GetTableName(nameof(Operation)))
             .InSchema(MMPConstants.Schema)
             .WithColumn(nameof(Operation.Id)).AsInt64().NotNullable().PrimaryKey().Identity().Unique()
             .WithColumn(nameof(Operation.OperationId)).AsGuid().NotNullable().Indexed($"IDX_{nameof(Operation.OperationId)}")

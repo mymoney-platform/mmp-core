@@ -12,13 +12,13 @@ public static class OperationExtension
             return default!;
         
         var model = new MMP.Core.Domain.Models.Operation(
-            entity.OperationId, 
-            entity.AccountId, 
+            Guid.Parse(entity.OperationId), 
+            Guid.Parse(entity.AccountId), 
             entity.Value, 
             entity.OperationType, 
             entity.OperationCategory, 
             entity.Description, 
-            entity.ExternalId);
+            string.IsNullOrWhiteSpace(entity.ExternalId) ? null : Guid.Parse(entity.ExternalId));
         
         model.SetInternalId(entity.Id);
         return model;
@@ -31,13 +31,13 @@ public static class OperationExtension
 
         var entity = new Operation
         {
-            OperationId = model.OperationId,
-            AccountId = model.AccountId,
+            OperationId = model.OperationId.ToString(),
+            AccountId = model.AccountId.ToString(),
             Value = model.Value,
             OperationType = model.OperationType,
             OperationCategory = model.OperationCategory,
             Description = model.Description,
-            ExternalId = model.ExternalId,
+            ExternalId = model.ExternalId.ToString(),
             Id = model.GetInternalId()
         };
         

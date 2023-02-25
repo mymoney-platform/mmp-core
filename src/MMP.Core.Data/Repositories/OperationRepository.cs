@@ -21,6 +21,7 @@ public class OperationRepository : IOperationRepository
         using var dbConnection = _databaseFactory.DbConnection;
         var operation = await dbConnection.QueryFirstOrDefaultAsync<Entities.Operation>(
             "SELECT OperationId, AccountId, Value, OperationType, OperationCategory, ExternalId, Description " +
+            $"FROM {Entities.Entity.GetTableName(nameof(Entities.Operation))} "+
             "WHERE OperationId = @OperationId AND AccountId=@AccountId",
             new { OperationId = operationId, AccountId = accountId });
 
@@ -33,7 +34,11 @@ public class OperationRepository : IOperationRepository
         entity.Id = 0; 
         
         using var dbConnection = _databaseFactory.DbConnection;
-        await dbConnection.InsertAsync(entity);
+        var script =
+            @"insert into mmpcore_db.""Operations"" (OperationId, AccountId, Value, Description, ExternalId, OperationCategory, OperationType)" +
+            "values (@OperationId, @AccountId, @Value, @Description, @ExternalId, @OperationCategory, @OperationType);";
+
+        await dbConnection.ExecuteAsync(script, entity);
         
         return entity.ToDomain();
     }

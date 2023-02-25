@@ -2,13 +2,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MMP.Core.Bootstrap.Services;
 
+namespace MMP.Core.Bootstrap;
 public class Bootstrap : IHostedService
 {
     private readonly ILogger<Bootstrap> _logger;
-    private readonly IPostgresSqlBoostrapService _postgresSqlBoostrapService;
+    private readonly IPostgresSqlBootstrapService _postgresSqlBoostrapService;
     private readonly IFluentMigrationService _fluentMigrationService;
 
-    public Bootstrap(ILogger<Bootstrap> logger, IPostgresSqlBoostrapService postgresSqlBoostrapService, 
+    public Bootstrap(ILogger<Bootstrap> logger, IPostgresSqlBootstrapService postgresSqlBoostrapService, 
         IFluentMigrationService fluentMigrationService)
     {
         _logger = logger;
@@ -22,7 +23,7 @@ public class Bootstrap : IHostedService
         await _postgresSqlBoostrapService.ExecuteAsync();
         _fluentMigrationService.Run();
         
-        await StartAsync(cancellationToken).ConfigureAwait(false);
+        await StopAsync(cancellationToken).ConfigureAwait(false);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

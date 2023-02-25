@@ -1,6 +1,6 @@
 namespace MMP.Core.Bootstrap.Services;
 
-public interface IPostgresSqlBoostrapService
+public interface IPostgresSqlBootstrapService
 {
     Task ExecuteAsync();
 }

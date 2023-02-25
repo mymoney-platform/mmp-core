@@ -4,25 +4,25 @@ using Npgsql;
 
 namespace MMP.Core.Bootstrap.Services;
 
-public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
+public class PostgresSqlBootstrapService : IPostgresSqlBootstrapService
 {
-    private readonly ILogger<PostgresSqlBoostrapService> _logger;
+    private readonly ILogger<PostgresSqlBootstrapService> _logger;
     private readonly PostgresSql _config;
     private readonly NpgsqlConnection _rootConnection;
     private NpgsqlConnection _dbConnection;
 
-    public PostgresSqlBoostrapService(ILogger<PostgresSqlBoostrapService> logger, PostgresSql config)
+    public PostgresSqlBootstrapService(ILogger<PostgresSqlBootstrapService> logger, PostgresSql config)
     {
         _logger = logger;
         _config = config;
-
+        
         _rootConnection = new NpgsqlConnection(BuildConnectionString("MMP_DB", config.Root));
         _rootConnection.Open();
     }
 
     public Task ExecuteAsync()
     {
-        _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} Starting... ");
+        _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} Starting... ");
         
         CreateAppUser();
         CreateDatabase();
@@ -30,14 +30,14 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
         CreateSchema();
         SetPermissions();
 
-        _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} Finished successfully ");
+        _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} Finished successfully ");
 
         return Task.CompletedTask;
     }
 
     private void CreateAppUser()
     {
-        _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} CreateAppUser... ");
+        _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} CreateAppUser... ");
 
         using var command = _rootConnection.CreateCommand();
 
@@ -47,11 +47,11 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
 
         if (qtd == 0)
         {
-            _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} Creating user '{_config.App.User}'...");
-
+            _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} Creating user '{_config.App.User}'...");
+            
             command.CommandText = $@"CREATE USER {_config.App.User} WITH PASSWORD '{_config.App.Password}'";
-
-            command.CommandText = @$"
+            
+           command.CommandText = @$"
                     CREATE ROLE {_config.App.User} WITH
 	                    LOGIN
 	                    NOSUPERUSER
@@ -60,23 +60,23 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
 	                    INHERIT
 	                    NOREPLICATION
 	                    CONNECTION LIMIT -1
-	                    PASSWORD '{_config.App.User}'; ";
+	                    PASSWORD '{_config.App.Password}'; ";
 
             command.ExecuteNonQuery();
 
             _logger.LogInformation(
-                $"{nameof(PostgresSqlBoostrapService)} user '{_config.App.User}' created successfully");
+                $"{nameof(PostgresSqlBootstrapService)} user '{_config.App.User}' created successfully");
         }
         else
         {
             _logger.LogInformation(
-                $"{nameof(PostgresSqlBoostrapService)} user '{_config.App.User}' already exists, none user has been created");
+                $"{nameof(PostgresSqlBootstrapService)} user '{_config.App.User}' already exists, none user has been created");
         }
     }
 
     private void CreateDatabase()
     {
-        _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} CreateDatabase... ");
+        _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} CreateDatabase... ");
 
         using var command = _rootConnection.CreateCommand();
 
@@ -88,7 +88,7 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
         if (qtd == 0)
         {
             _logger.LogInformation(
-                $"{nameof(PostgresSqlBoostrapService)} Creating DATABASE '{_config.Server.DatabaseName}'...");
+                $"{nameof(PostgresSqlBootstrapService)} Creating DATABASE '{_config.Server.DatabaseName}'...");
 
             command.CommandText = @$"
                         CREATE DATABASE {_config.Server.DatabaseName} 
@@ -100,18 +100,18 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
             command.ExecuteNonQuery();
 
             _logger.LogInformation(
-                $"{nameof(PostgresSqlBoostrapService)} DATABASE '{_config.Server.DatabaseName}' created successfully");
+                $"{nameof(PostgresSqlBootstrapService)} DATABASE '{_config.Server.DatabaseName}' created successfully");
         }
         else
         {
             _logger.LogInformation(
-                $"{nameof(PostgresSqlBoostrapService)} DATABASE '{_config.Server.DatabaseName}' already exists, none user has been created");
+                $"{nameof(PostgresSqlBootstrapService)} DATABASE '{_config.Server.DatabaseName}' already exists, none user has been created");
         }
     }
 
     private void SetPermissions()
     {
-        _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} SetPermissions... ");
+        _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} SetPermissions... ");
 
         using var command = _dbConnection.CreateCommand();
 
@@ -126,12 +126,12 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
         command.ExecuteNonQuery();
 
         _logger.LogInformation(
-            $"{nameof(PostgresSqlBoostrapService)} Grant permissions applied to the user '{_config.App.User}' to the schema '{_config.Server.DatabaseName}'");
+            $"{nameof(PostgresSqlBootstrapService)} Grant permissions applied to the user '{_config.App.User}' to the schema '{_config.Server.DatabaseName}'");
     }
 
     private void CreateSchema()
     {
-        _logger.LogInformation($"{nameof(PostgresSqlBoostrapService)} CreateSchema... ");
+        _logger.LogInformation($"{nameof(PostgresSqlBootstrapService)} CreateSchema... ");
 
         using var command = _dbConnection.CreateCommand();
 
@@ -140,12 +140,12 @@ public class PostgresSqlBoostrapService : IPostgresSqlBoostrapService
         command.ExecuteNonQuery();
         
         _logger.LogInformation(
-            $"{nameof(PostgresSqlBoostrapService)} Created schema {_config.Server.DatabaseName}'");
+            $"{nameof(PostgresSqlBootstrapService)} Created schema {_config.Server.DatabaseName}'");
     }
 
     private void CreateDbConnection(PostgresSql config)
     {
-        _dbConnection = new NpgsqlConnection(BuildConnectionString($"{config.Server.DatabaseName}", config.Root));
+        _dbConnection = new NpgsqlConnection(BuildConnectionString($"{config.Server.DatabaseName}", config.App));
         _dbConnection.Open();
     }
 

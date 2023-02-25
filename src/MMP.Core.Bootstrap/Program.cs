@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MMP.Core.Bootstrap;
 using MMP.Core.Bootstrap.Configs;
 using MMP.Core.Bootstrap.Services;
 
@@ -25,10 +26,10 @@ static IHostBuilder CreateHostBuilder(string[] args = null)
         .ConfigureServices((hostContext, services) =>
         {
             var postgres = hostContext.Configuration.GetSection("PostgresSQL").Get<PostgresSql>();
-            services.AddTransient<IPostgresSqlBoostrapService>((sp) =>
+            services.AddTransient<IPostgresSqlBootstrapService>((sp) =>
             {
-                var logger = sp.GetService<ILogger<PostgresSqlBoostrapService>>();
-                return new PostgresSqlBoostrapService(logger, postgres);
+                var logger = sp.GetService<ILogger<PostgresSqlBootstrapService>>();
+                return new PostgresSqlBootstrapService(logger, postgres);
             });
 
             services.AddTransient<IFluentMigrationService, FluentMigrationService>();
